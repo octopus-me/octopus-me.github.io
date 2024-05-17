@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Software Metrics</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Traditional Software Metrics</h1>
+        <p>Traditional software metrics, often applied in isolation, have been considered unsatisfactory for decades. Various metrics and processes have been proposed in the past, but many lack a robust theoretical foundation and significant experimental validation. These metrics, usually defined and tested in limited environments, yield inconsistent results when applied in different contexts due to the lack of clear definitions and well-defined test hypotheses. Only a few metrics are widely accepted and used. Even widely studied metrics, such as Lines of Code (LOC), Halstead metrics, and Cyclomatic Complexity, are not universally agreed upon. Other metrics, such as product type and the level of programmer knowledge, are subjective and difficult to specify. The interpretation and comparison of metric results are hindered by variations in environments, languages, applications, and development methodologies. Despite these difficulties, when applied carefully in limited environments, some metrics can improve software quality and productivity. Simple metrics, such as LOC and Cyclomatic Complexity, have been good predictors of characteristics like the number of errors, total effort, and maintainability, but they should be used with caution and according to the specific environment.</p>
+
+        <h2>Objective Metrics</h2>
+        <p>Objective metrics primarily address the characteristics of software source code, such as size and complexity. Various studies have proposed metrics for these aspects:</p>
+
+        <h3>Software Dimension Metrics</h3>
+        <h4>Lines of Code (LOC):</h4>
+        <ul>
+            <li>LOC is a widely used metric to measure program size.</li>
+            <li>It is considered easy to define, but there are challenges such as dealing with blank lines, comments, non-executable sections, multiple statements per line, and reused code.</li>
+            <li>LOC can predict complexity, development effort, and program performance.</li>
+            <li>Studies have validated these relationships, but there are criticisms, such as LOC being a less effective measure than Halstead's "program length."</li>
+        </ul>
+
+        <h4>Function Points (FP):</h4>
+        <ul>
+            <li>Estimates the size of the software early in development, based on user inputs, inquiries, outputs, and primary files.</li>
+            <li>Individual values are weighted: Inputs (4), Outputs (5), Inquiries (4), Primary Files (10), adjustable within ±35%.</li>
+            <li>Validated in studies as a predictor of development effort, but some research questions its accuracy.</li>
+        </ul>
+
+        <h4>System Bag:</h4>
+        <ul>
+            <li>Measures the overall size of the software from functionalities described in formal specifications.</li>
+            <li>Calculated for data-driven or process-oriented systems.</li>
+            <li>Aims to maximize the Bag/Total Cost ratio in project development.</li>
+        </ul>
+
+        <h3>Halstead Metrics</h3>
+        <p>The Halstead Metrics are a set of metrics based on information theory, also known as Software Science, that apply to various aspects of software. They include Program Vocabulary (n), Length (N), and Volume (V), and are used to assess the overall software development effort. Additionally, formulas have been developed to calculate the total effort (E) and development time (T) of the software.</p>
+
+        <h4>Program Vocabulary</h4>
+        <p>The program's vocabulary (n) is a measure that evaluates the diversity of symbols present in the source code. It is defined as the sum of the number of unique operators (n1) and the number of unique operands (n2) in the program.</p>
+        <code>n = n1 + n2</code>
+
+        <h4>Program Length</h4>
+        <p>The program's length (N) represents the total quantity of operators and operands present in the source code. While vocabulary (n) is the sum of different symbols, length is the total sum of operators (N1) and operands (N2).</p>
+        <code>N = N1 + N2</code>
+        <p>The distinction between operators and operands may not be clear, so the value of N can be estimated by the formula:</p>
+        <code>N' = n1 * log(n1) + n2 * log(n2)</code>
+        <p>This formula allows calculating N based on the current or estimated values of n1 and n2. Empirical studies have validated this equation and related N and N' to other metrics, such as complexity and number of errors. It is argued that this metric is more objective and efficient than LOC.</p>
+
+        <h4>Program Volume</h4>
+        <p>The program's volume, measured in bits, is determined by the product of the length (N) and the logarithm of the vocabulary (n). Its determination is not complex, as it does not require semantic analysis. However, the sum of the volumes of a program's modules may differ from the total volume of the software due to vocabulary variation.</p>
+        <p>Analyses on the scope of this measure highlight its independence from the programming language used. Empirical evidence shows that Halstead's length and volume metrics are linearly related to LOC.</p>
+
+        <h3>Software Complexity Metrics</h3>
+        <p>Software complexity metrics are designed to assess the complexity of a program early in the development cycle, aiding in the management of the software process. Among the main metrics are:</p>
+
+        <h4>Cyclomatic Complexity (v(G)):</h4>
+        <ul>
+            <li>Based on the number of conditional paths in the software, corresponding to the maximum number of linearly independent paths.</li>
+            <li>Represented by a control flow graph, where nodes are sequential instructions and arcs indicate the control flow.</li>
+            <li>Calculated using the formula: <code>v(G) = e - n + 2</code>, where <code>e</code> is the number of edges and <code>n</code> is the number of nodes in the graph.</li>
+            <li>Used to measure program complexity, guiding development and testing.</li>
+            <li>Studies show that productivity decreases as the density of conditional points increases.</li>
+            <li>Related to debugging and maintenance efforts, it can estimate detailed module costs.</li>
+            <li>Extensions and modifications have been proposed to improve its validity, such as Myers' formula: <code>v(G)' = [l : u]</code>, where <code>l</code> and <code>u</code> are lower and upper limits.</li>
+            <li>Stetter proposed including statements and data references in the graph for a more comprehensive complexity measure.</li>
+            <li>Correlations have been found between cyclomatic complexity and Halstead metrics.</li>
+            <li>McCabe normalized the metric and introduced five other metrics related to software complexity.</li>
+        </ul>
+        <p>These metrics are used to identify and minimize complexity in unstructured code, determine the number of tests needed for complete coverage of possible executions, eliminate redundancies, and restrict complexity to acceptable levels.</p>
+    </div>
+</body>
+</html>
